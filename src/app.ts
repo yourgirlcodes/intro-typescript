@@ -1,16 +1,10 @@
-import { generateRandomPin } from './utils'
+import { generateRandomPin, Component } from './utils'
 
-
-function Component(options: {id: string}){
-    console.log(options, 'target') // logs {id: 'app'}
-    return (target) => console.log(target.id = options.id) // logs app and we setting App.id
-}
-
-// we will use a decorator factory to set the static id on App
 @Component({ // we can set id here
     id: 'app'
 })
 // this whole above bit is the same as static id='app'
+
 class App {
     // static id = "app"
     // static property just makes more sense
@@ -29,6 +23,8 @@ class App {
     }
 }
 
+
+
 function main(ClassComponent) { // main receives App with all methods etc
 
     const el = document.getElementById(ClassComponent.id);
@@ -40,6 +36,7 @@ function main(ClassComponent) { // main receives App with all methods etc
     comp.onInit(el)
 
 }
+
 
 main(App);
 
