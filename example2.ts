@@ -47,13 +47,14 @@ function showFarmCode(ComponentClass) {
 }
 
 
-type ValidFarms = 'corn' | 'cattle'
+type ValidFarms = 'corn' | 'cattle' // type alias
 
-interface GenerateFarmConfigs {
+interface GenerateFarmConfigs { // define interface which doesnt exist in js
     name: ValidFarms,
     length: number
 }
 
+// define overloads
 function generateFarmCodes(name: ValidFarms, length: number): string // two params
 function generateFarmCodes(options: GenerateFarmConfigs): string // single object
 function generateFarmCodes(optionsOrFarm: GenerateFarmConfigs | ValidFarms): string {
@@ -64,4 +65,52 @@ function generateFarmCodes(optionsOrFarm: GenerateFarmConfigs | ValidFarms): str
     return optionsOrFarm.name + ":" + " " + Math.random().toString(36).substr(2, optionsOrFarm.length)
 }
 
+// call function and inject the class
 showFarmCode(Farm)
+
+
+
+// STATIC VS INSTANCE PROPERTIES
+
+// FOR STATIC:
+// class App2 {
+//     static id: 'app'           
+// giving a static property because it makes more sense - this property won't change
+// same as new (App2()).id = 'app'
+// }
+
+// refactor main for static
+// function mainWhenStatic(ClassComponent) {    
+//     var appComponent = document.getElementById(ClassComponent.id);
+
+//     setInterval(function () {
+//         if (appComponent) {
+//             appComponent.innerHTML = "Your PIN will change every 5 seconds" + "<br />" + "PIN: " + generateRandomPin({ letter: 'A', length: 4 });
+//         }
+//     }, 5000);
+// }
+
+// mainWhenStatic(App2)
+// -------------------------------------------------
+// FOR INSTANCE: 
+
+// class App3{
+//     id: string
+//     constructor(){
+//         this.id="app"
+//     }
+// }
+
+// function mainWhenInst(ClassComponent) {
+//     const comp = new ClassComponent()
+    
+//     var appComponent = document.getElementById(comp.id);
+//     setInterval(function () {
+//         if (appComponent) {
+//             appComponent.innerHTML = "Your PIN will change every 5 seconds" + "<br />" + "PIN: " + generateRandomPin({ letter: 'A', length: 4 });
+//         }
+//     }, 5000);
+// }
+
+// mainWhenInst(App3);
+
