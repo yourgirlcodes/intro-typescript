@@ -1,3 +1,4 @@
+import random from 'lodash/random'
 import { generateRandomPin, Component } from './utils'
 
 @Component({ // we can set id here
@@ -5,22 +6,23 @@ import { generateRandomPin, Component } from './utils'
 })
 // this whole above bit is the same as static id='app'
 
+
 class App {
     // static id = "app"
     // static property just makes more sense
     // public because not explicitly stated otherwise
-
-    onInit(el: HTMLElement | null): void {
+     onInit(el: HTMLElement | null): void {
         // this is an instance method
         //class method with el as a DEPENDENCY.
         setInterval(function () {
             if (el) {
-                el.innerHTML = "Your PIN will change every 4 seconds" + "<br />" + "PIN: " + generateRandomPin({ letter: 'A', length: 4 });
+                el.innerHTML = "Your PIN will change every 4 seconds" + "<br />" + "PIN: " + generateRandomPin({ letter: 'A', length: random(1, 5) });
             }
         }, 4000);
         el && (el.innerHTML = "your PIN is loading")
 
     }
+
 }
 
 

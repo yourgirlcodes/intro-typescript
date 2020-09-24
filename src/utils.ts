@@ -4,16 +4,6 @@ export function Component(options: { id: string }) {
     return (target) => console.log(target.id = options.id) // logs app and we setting App.id
 }
 
-export function enumerable(isEnum: boolean) {
-    return (
-        target,
-        propertyKey,
-        propertyDesc: PropertyDescriptor // this is where the enumerable property sits
-    ) => {
-        propertyDesc.enumerable = isEnum
-    }
-
-}
 
 
 export type ValidLetter = 'A' | 'B' | 'C'
