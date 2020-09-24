@@ -1,9 +1,20 @@
 import { generateRandomPin } from './utils'
-import { Component } from '../example3' // this is the component that logs every time a component is created 
 
 
-class App extends Component {
-    static id = "app" // static property just makes more sense
+function Component(options: {id: string}){
+    console.log(options, 'target') // logs {id: 'app'}
+    return (target) => console.log(target.id = options.id) // logs app and we setting App.id
+}
+
+// we will use a decorator factory to set the static id on App
+@Component({ // we can set id here
+    id: 'app'
+})
+// this whole above bit is the same as static id='app'
+class App {
+    // static id = "app"
+    // static property just makes more sense
+    // public because not explicitly stated otherwise
 
     onInit(el: HTMLElement | null): void {
         // this is an instance method
@@ -24,8 +35,8 @@ function main(ClassComponent) { // main receives App with all methods etc
     // we define el which can be whatever variable - like normal js
 
     // NEED TO SET AN INSTANCE of App
-    const comp = new ClassComponent() // new instance of Component is created (since it is extended by App) causes to log 'component created'
-    // then we all onInit and inject el because it is a dependency
+    const comp = new ClassComponent()
+    // then we add onInit and inject el because it is a dependency
     comp.onInit(el)
 
 }
