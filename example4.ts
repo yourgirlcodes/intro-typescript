@@ -67,17 +67,15 @@ function enumerable(isEnum: boolean) {
 function prop(x, name) {
     console.log(x, name)
     // logs prototype of App ==> {onInit: f, constructor: f}), "greeting"
-    // logs App constructor, "statGreeting" --> because this is static property 
+    // logs App constructor, "statGreeting" --> because this is static property ---> CONSTRUCTOR
 }
 
 function param(x, name, index) {
     console.log(x, name, index)
 }
 // logs {onInit: ƒ, printFullName: ƒ, constructor: ƒ} "printFullName" 0 when NOT STATIC
-// logs ƒ App() {} "printFullName" 0 when STATIC
+// logs ƒ App() {} "printFullName" 0 when STATIC ----> PROTOTYPE OBJECT OF CLASS
 class F {
-
-
     @prop //property decorator
     greeting: string // instance property
 

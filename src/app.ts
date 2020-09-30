@@ -16,7 +16,7 @@ class App {
         //class method with el as a DEPENDENCY.
         setInterval(function () {
             if (el) {
-                el.innerHTML = "Your PIN will change every 4 seconds" + "<br />" + "PIN: " + generateRandomPin({ letter: 'A', length: random(1, 5) });
+                el.innerHTML = "Your PIN will change every 4 seconds" + "<br />" + "PIN: " + generateRandomPin({ letter: 'A', length: random(5, 9) });
             }
         }, 4000);
         el && (el.innerHTML = "your PIN is loading")
@@ -43,3 +43,5 @@ function main(ClassComponent) { // main receives App with all methods etc
 main(App);
 
 
+// static prints constructor function of class
+// instance prints prototype object of class
